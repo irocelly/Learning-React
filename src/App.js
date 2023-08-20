@@ -2,15 +2,24 @@ import React from "react";
 import "./App.css";
 import Layout, { Content } from "antd/es/layout/layout";
 import Navbar from "./components/layouts/Navbar/Navbar";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import routeItems from "./route";
 
 function App() {
   return (
-    <Layout className="layout">
-      <Navbar />
-      <Content>
-        <h1>Hello World ! Our first project using Ant design</h1>
-      </Content>
-    </Layout>
+    <Router>
+      <Layout className="layout">
+        <Navbar />
+        <Content>
+          <Routes>
+            {/* This Code below is for automatically assign the route from route.js */}
+            {routeItems.map((item) => (
+              <Route path={`/${item.key}`} element={item.element} />
+            ))}
+          </Routes>
+        </Content>
+      </Layout>
+    </Router>
   );
 }
 
