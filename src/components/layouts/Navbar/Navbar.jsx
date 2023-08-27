@@ -3,7 +3,10 @@ import { Menu } from "antd";
 import { useState } from "react";
 import React from "react";
 import { Link } from "react-router-dom";
-import routeItems from "../../../route";
+import routes from "../../../route";
+import styles from "./Navbar.module.css";
+
+const { routeItems } = routes;
 
 const Navbar = () => {
   const [current, setCurrent] = useState("");
@@ -21,10 +24,13 @@ const Navbar = () => {
         mode="horizontal"
       >
         {routeItems.map((item) => (
-          <Menu.Item key={item.key} style={{ color: "white" }}>
+          <Menu.Item key={item.key} className={styles.menuStyle}>
             <Link to={`/${item.key}`}>{item.label}</Link>
           </Menu.Item>
         ))}
+        <Menu.Item key={"login"} className={styles.loginStyle}>
+          <Link to={`/login`}>Login</Link>
+        </Menu.Item>
       </Menu>
     </Header>
   );

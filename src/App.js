@@ -3,7 +3,9 @@ import "./App.css";
 import Layout, { Content } from "antd/es/layout/layout";
 import Navbar from "./components/layouts/Navbar/Navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import routeItems from "./route";
+import routes from "./route";
+
+const { routeItems, loginRoute } = routes;
 
 function App() {
   return (
@@ -14,6 +16,10 @@ function App() {
           <Routes>
             {/* This Code below is for automatically assign the route from route.js */}
             {routeItems.map((item) => (
+              <Route path={`/${item.key}`} element={item.element} />
+            ))}
+            {/* Routing for login page */}
+            {loginRoute.map((item) => (
               <Route path={`/${item.key}`} element={item.element} />
             ))}
           </Routes>
